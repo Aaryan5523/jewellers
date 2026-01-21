@@ -23,16 +23,6 @@ const Footer = () => {
                     </div>
 
                     <div className="footer-links">
-                        <h4>Services</h4>
-                        <ul>
-                            <li><a href="#">Care & Repairs</a></li>
-                            <li><a href="#">Sizing Guide</a></li>
-                            <li><a href="#">Book an Appointment</a></li>
-                            <li><a href="#">Bespoke Design</a></li>
-                        </ul>
-                    </div>
-
-                    <div className="footer-links">
                         <h4>Connect</h4>
                         <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
                             <Instagram size={20} className="icon" />
@@ -40,14 +30,6 @@ const Footer = () => {
                             <Twitter size={20} className="icon" />
                             <Mail size={20} className="icon" />
                         </div>
-                    </div>
-                </div>
-
-                <div className="footer-bottom">
-                    <p>&copy; {new Date().getFullYear()} Jayesh Jewellers. All rights reserved.</p>
-                    <div style={{ display: 'flex', gap: '30px' }}>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
                     </div>
                 </div>
             </div>

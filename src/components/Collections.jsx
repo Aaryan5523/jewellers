@@ -8,9 +8,11 @@ const Collections = () => {
 
     const categories = ['All', ...new Set(products.map(p => p.category))];
 
-    const filteredProducts = activeCategory === 'All'
-        ? products
-        : products.filter(p => p.category === activeCategory);
+    const filteredProducts = (activeCategory === 'All'
+        ? products.filter((product, index, self) =>
+            index === self.findIndex(t => t.category === product.category)
+        )
+        : products.filter(p => p.category === activeCategory)).slice(0, 4);
 
     return (
         <section id="collections" className="section-padding container">

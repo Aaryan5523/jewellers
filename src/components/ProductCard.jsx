@@ -10,7 +10,7 @@ const ProductCard = ({ id, image, title, price, category }) => {
             <div className="product-info">
                 <p className="product-category">{category}</p>
                 <h3 className="serif">{title}</h3>
-                <p className="product-price">${price}</p>
+                <p className="product-price">₹{price}</p>
             </div>
         </div>
     );

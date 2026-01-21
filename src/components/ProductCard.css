@@ -11,6 +11,13 @@
     aspect-ratio: 1/1.2;
 }
 
+@media (max-width: 768px) {
+    .product-image {
+        aspect-ratio: 1/1;
+        /* Square images on mobile for better fit */
+    }
+}
+
 .product-image img {
     width: 100%;
     height: 100%;

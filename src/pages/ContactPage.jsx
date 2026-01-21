@@ -20,8 +20,8 @@ const ContactPage = () => {
 
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                    gap: '60px',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                    gap: '40px',
                     marginBottom: '80px'
                 }}>
                     {/* Contact Form */}
@@ -31,16 +31,16 @@ const ContactPage = () => {
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                                 <div className="form-group">
                                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: '500' }}>First Name</label>
-                                    <input type="text" placeholder="John" style={inputStyle} />
+                                    <input type="text" style={inputStyle} />
                                 </div>
                                 <div className="form-group">
                                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: '500' }}>Last Name</label>
-                                    <input type="text" placeholder="Doe" style={inputStyle} />
+                                    <input type="text" style={inputStyle} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: '500' }}>Email Address</label>
-                                <input type="email" placeholder="john@example.com" style={inputStyle} />
+                                <input type="email" style={inputStyle} />
                             </div>
                             <div className="form-group">
                                 <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem', fontWeight: '500' }}>Message</label>
@@ -58,22 +58,22 @@ const ContactPage = () => {
                                 <div style={infoItemStyle}>
                                     <MapPin size={24} className="gold-text" />
                                     <div>
-                                        <p style={{ fontWeight: '600', marginBottom: '4px' }}>Flagship Store</p>
-                                        <p style={{ color: 'var(--text-grey)', fontSize: '0.95rem' }}>123 Diamond Avenue, Suite 100<br />Mayfair, London, W1K 2BN</p>
+                                        <p style={{ fontWeight: '600', marginBottom: '4px' }}>Store Location</p>
+                                        <p style={{ color: 'var(--text-grey)', fontSize: '0.95rem' }}>Behind the old railway station, <br /> Nawagam (Ghed), next to Keshubhai's hotel, Jamnagar.</p>
                                     </div>
                                 </div>
                                 <div style={infoItemStyle}>
                                     <Phone size={24} className="gold-text" />
                                     <div>
                                         <p style={{ fontWeight: '600', marginBottom: '4px' }}>Call Us</p>
-                                        <p style={{ color: 'var(--text-grey)', fontSize: '0.95rem' }}>+44 (20) 7946 0000</p>
+                                        <p style={{ color: 'var(--text-grey)', fontSize: '0.95rem' }}>+91 70165 79063</p>
                                     </div>
                                 </div>
                                 <div style={infoItemStyle}>
                                     <Mail size={24} className="gold-text" />
                                     <div>
                                         <p style={{ fontWeight: '600', marginBottom: '4px' }}>Email Support</p>
-                                        <p style={{ color: 'var(--text-grey)', fontSize: '0.95rem' }}>concierge@jayeshjewellers.com</p>
+                                        <p style={{ color: 'var(--text-grey)', fontSize: '0.95rem' }}>Dhruvraninga37@gmail.com</p>
                                     </div>
                                 </div>
                                 <div style={infoItemStyle}>
@@ -81,9 +81,8 @@ const ContactPage = () => {
                                     <div>
                                         <p style={{ fontWeight: '600', marginBottom: '4px' }}>Business Hours</p>
                                         <p style={{ color: 'var(--text-grey)', fontSize: '0.95rem' }}>
-                                            Mon - Fri: 10:00 AM - 7:00 PM<br />
-                                            Sat: 11:00 AM - 5:00 PM<br />
-                                            Sun: Closed
+                                            Mon - Sat : 10:00 AM - 7:00 PM<br />
+                                            Sun : Closed
                                         </p>
                                     </div>
                                 </div>

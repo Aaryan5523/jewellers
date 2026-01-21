@@ -24,6 +24,12 @@ html {
   box-sizing: border-box;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--soft-white);
@@ -150,7 +156,9 @@ ul {
 
 @media (max-width: 576px) {
   .product-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    /* Reduce gap for mobile */
   }
 }
 
@@ -163,9 +171,8 @@ ul {
 
 .footer-content {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 60px;
-  margin-bottom: 60px;
 }
 
 .footer-logo h1 {
@@ -198,15 +205,7 @@ ul {
   color: var(--primary-gold);
 }
 
-.footer-bottom {
-  border-top: 1px solid #333;
-  padding-top: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--text-grey);
-  font-size: 0.8rem;
-}
+
 
 @media (max-width: 992px) {
   .footer-content {

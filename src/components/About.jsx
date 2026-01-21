@@ -16,7 +16,6 @@ const About = () => {
                         <p style={{ fontSize: '1.1rem', color: 'var(--text-grey)', marginBottom: '40px' }}>
                             We believe that jewellery is more than just an accessory; it's a legacy. That's why we use only the finest, ethically sourced diamonds and gemstones, set in recycled precious metals.
                         </p>
-                        <button className="btn btn-outline">Read more about us</button>
                     </div>
                     <div style={{ position: 'relative' }}>
                         <div style={{
@@ -26,7 +25,7 @@ const About = () => {
                             overflow: 'hidden'
                         }}>
                             <img
-                                src="https://images.unsplash.com/photo-1573408302185-9146fe634ad0?auto=format&fit=crop&q=80&w=1000"
+                                src="https://w0.peakpx.com/wallpaper/127/1/HD-wallpaper-wedding-rings-white-gold-luxury-jewelry-diamonds.jpg"
                                 alt="Craftsmanship"
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                             />
