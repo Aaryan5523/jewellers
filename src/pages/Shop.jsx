@@ -34,8 +34,8 @@ const Shop = () => {
                 </div>
 
                 <div className="product-grid">
-                    {filteredProducts.map(product => (
-                        <ProductCard key={product.id} {...product} />
+                    {filteredProducts.map((product, index) => (
+                        <ProductCard key={product.id} {...product} index={index} />
                     ))}
                 </div>
             </section>

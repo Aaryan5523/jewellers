@@ -1,20 +1,35 @@
 .product-card {
     cursor: pointer;
     transition: var(--transition);
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    /* Soft shadow */
+    overflow: hidden;
+    /* Ensure image and content stay inside radius */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 .product-image {
     position: relative;
     overflow: hidden;
     background-color: #f5f5f5;
-    margin-bottom: 20px;
-    aspect-ratio: 1/1.2;
+    margin-bottom: 0;
+    /* Removing margin-bottom to connect with info */
+    aspect-ratio: 4/3;
+    /* Wider image as per design example */
 }
 
 @media (max-width: 768px) {
     .product-image {
         aspect-ratio: 1/1;
-        /* Square images on mobile for better fit */
     }
 }
 
@@ -30,7 +45,12 @@
 }
 
 .product-info {
-    text-align: center;
+    padding: 24px;
+    text-align: left;
+    /* Verify left alignment as per common card designs */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-category {
@@ -42,16 +62,65 @@
 }
 
 .product-info h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    /* Slightly smaller, more compact */
     margin-bottom: 8px;
+    font-weight: 700;
+    /* Bolder */
+    color: var(--charcoal);
+    font-family: var(--font-sans);
+    /* Explicitly ensure sans-serif */
+}
+
+.product-description {
+    font-size: 0.85rem;
+    /* Smaller description */
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.product-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 12px;
+}
+
+.product-details li {
+    font-size: 0.8rem;
+    /* Smaller details text */
+    color: #4B5563;
+    /* Cool grey */
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 16px;
+}
+
+.product-details li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: #2563EB;
+    /* Blue dot as per reference image */
+    border-radius: 50%;
 }
 
 .product-price {
-    font-weight: 500;
-    color: var(--primary-gold);
+    font-weight: 600;
+    color: var(--charcoal);
+    /* Changed to charcoal/dark for standard card look */
+    font-size: 1.1rem;
+    margin-top: auto;
+    /* Push to bottom if needed */
 }
 
-.btn-sm {
-    padding: 10px 20px;
-    font-size: 0.7rem;
+/* Specific styling for fade-in animation handled in JSX/global CSS, 
+   but ensuring opacity/transform properties don't conflict */
+.product-card.fade-in {
+    /* Animation class handled globally or locally */
 }

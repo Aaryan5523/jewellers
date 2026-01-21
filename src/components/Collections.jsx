@@ -12,7 +12,7 @@ const Collections = () => {
         ? products.filter((product, index, self) =>
             index === self.findIndex(t => t.category === product.category)
         )
-        : products.filter(p => p.category === activeCategory)).slice(0, 4);
+        : products.filter(p => p.category === activeCategory)).slice(0, 3);
 
     return (
         <section id="collections" className="section-padding container">
@@ -34,8 +34,8 @@ const Collections = () => {
             </div>
 
             <div className="product-grid">
-                {filteredProducts.map(product => (
-                    <ProductCard key={product.id} {...product} />
+                {filteredProducts.map((product, index) => (
+                    <ProductCard key={product.id} {...product} index={index} />
                 ))}
             </div>
 

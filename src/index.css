@@ -13,7 +13,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scroll-padding-top: 100px;
   /* Offset for sticky navbar */
 }
@@ -144,7 +144,7 @@ ul {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
@@ -156,7 +156,7 @@ ul {
 
 @media (max-width: 576px) {
   .product-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 15px;
     /* Reduce gap for mobile */
   }
@@ -264,5 +264,5 @@ ul {
 }
 
 .fade-in {
-  animation: fadeIn 1s ease forwards;
+  animation: fadeIn 0.5s ease forwards;
 }
