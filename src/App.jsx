@@ -8,9 +8,6 @@ import Shop from './pages/Shop';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import WhatsAppButton from './components/WhatsAppButton';
-import LoginPage from './pages/admin/LoginPage';
-import Dashboard from './pages/admin/Dashboard';
-import ProtectedRoute from './components/admin/ProtectedRoute';
 import './components/animations.css';
 
 function App() {
@@ -24,10 +21,6 @@ function App() {
           <Route path="/shop" element={<><Navbar /><Shop /><Footer /><WhatsAppButton /></>} />
           <Route path="/about" element={<><Navbar /><AboutPage /><Footer /><WhatsAppButton /></>} />
           <Route path="/contact" element={<><Navbar /><ContactPage /><Footer /><WhatsAppButton /></>} />
-
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<LoginPage />} />
-          <Route path="/admin/*" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         </Routes>
       </div>
     </Router>

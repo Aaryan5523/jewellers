@@ -1,125 +1,116 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ProductCard from '../components/ProductCard';
-import axios from 'axios';
-import CONFIG from '../config';
+import { products } from '../data';
 
 const Shop = () => {
-    const [selectedCategory, setSelectedCategory] = useState('All');
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = async () => {
-        try {
-            setLoading(true);
-            const response = await axios.get(`${CONFIG.API_URL}/products`);
-            setProducts(response.data.products || []);
-        } catch (err) {
-            console.error('Failed to fetch products:', err);
-            setError('Failed to load products. Make sure the backend server is running.');
-        } finally {
-            setLoading(false);
-        }
-    };
+    const [activeCategory, setActiveCategory] = useState('All');
 
     const categories = ['All', ...new Set(products.map(p => p.category))];
 
-    const filteredProducts = selectedCategory === 'All'
+    const filteredProducts = activeCategory === 'All'
         ? products
-        : products.filter(p => p.category === selectedCategory);
-
-    if (loading) {
-        return (
-            <div style={{
-                minHeight: '80vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '1.2rem',
-                color: 'var(--text-grey)'
-            }}>
-                Loading products...
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div style={{
-                minHeight: '80vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                gap: '16px'
-            }}>
-                <p style={{ color: '#c00', fontSize: '1.1rem' }}>{error}</p>
-                <button onClick={fetchProducts} className="btn">Retry</button>
-            </div>
-        );
-    }
+        : products.filter(p => p.category === activeCategory);
 
     return (
-        <section className="section-padding container">
-            <div className="text-center mb-60">
-                <p className="subtitle gold-text">Our Collection</p>
-                <h2 className="serif" style={{ fontSize: '3rem' }}>Exquisite Pieces</h2>
-            </div>
-
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                gap: '20px',
-                marginBottom: '50px',
-                flexWrap: 'wrap'
-            }}>
-                {categories.map(category => (
-                    <button
-                        key={category}
-                        onClick={() => setSelectedCategory(category)}
-                        style={{
-                            padding: '12px 30px',
-                            background: selectedCategory === category ? 'var(--gradient-gold)' : 'transparent',
-                            color: selectedCategory === category ? 'white' : 'var(--charcoal)',
-                            border: selectedCategory === category ? 'none' : '2px solid var(--border-color)',
-                            borderRadius: '30px',
-                            cursor: 'pointer',
-                            fontSize: '0.95rem',
-                            fontWeight: '600',
-                            letterSpacing: '1px',
-                            textTransform: 'uppercase',
-                            transition: 'all 0.3s ease',
-                            boxShadow: selectedCategory === category ? 'var(--shadow-gold)' : 'none'
-                        }}
-                    >
-                        {category}
-                    </button>
-                ))}
-            </div>
-
-            {filteredProducts.length === 0 ? (
-                <div style={{
-                    textAlign: 'center',
-                    padding: '60px 20px',
-                    color: 'var(--text-grey)'
-                }}>
-                    <p style={{ fontSize: '1.1rem' }}>No products found in this category.</p>
-                    <p style={{ fontSize: '0.9rem', marginTop: '8px' }}>
-                        Add products from the admin panel.
-                    </p>
+        <div className="shop-page">
+            <header className="shop-header">
+                <div className="container text-center">
+                    <p className="subtitle gold-text">The Collection</p>
+                    <h1 className="serif">Discover Jayesh Jewellers</h1>
                 </div>
-            ) : (
+            </header>
+
+            <section className="section-padding container">
+                <div className="filter-nav mb-60">
+                    {categories.map(category => (
+                        <button
+                            key={category}
+                            className={`filter-btn ${activeCategory === category ? 'active' : ''}`}
+                            onClick={() => setActiveCategory(category)}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+
                 <div className="product-grid">
                     {filteredProducts.map((product, index) => (
                         <ProductCard key={product.id} {...product} index={index} />
                     ))}
                 </div>
-            )}
-        </section>
+            </section>
+
+            <style jsx>{`
+                .shop-header {
+                    padding: 160px 0 80px;
+                    background-color: var(--soft-white);
+                    border-bottom: 1px solid var(--border-color);
+                }
+
+                .shop-header h1 {
+                    font-size: 3.5rem;
+                    margin-top: 20px;
+                }
+
+                .filter-nav {
+                    display: flex;
+                    justify-content: center;
+                    gap: 30px;
+                }
+
+                .filter-btn {
+                    background: none;
+                    border: none;
+                    font-family: var(--font-sans);
+                    font-size: 0.9rem;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    color: var(--text-grey);
+                    cursor: pointer;
+                    padding: 5px 0;
+                    position: relative;
+                    transition: var(--transition);
+                }
+
+                .filter-btn::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0;
+                    height: 1px;
+                    background: var(--primary-gold);
+                    transition: var(--transition);
+                }
+
+                .filter-btn.active {
+                    color: var(--charcoal);
+                }
+
+                .filter-btn.active::after {
+                    width: 100%;
+                }
+
+                .filter-btn:hover {
+                    color: var(--charcoal);
+                }
+
+                @media (max-width: 768px) {
+                    .shop-header {
+                        padding: 120px 0 60px;
+                    }
+                    .shop-header h1 {
+                        font-size: 2.5rem;
+                    }
+                    .filter-nav {
+                        gap: 20px;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                        padding-bottom: 10px;
+                    }
+                }
+            `}</style>
+        </div>
     );
 };
 

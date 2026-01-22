@@ -1,28 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import axios from 'axios';
-import CONFIG from '../config';
+import { products } from '../data';
 
 const Collections = () => {
     const [activeCategory, setActiveCategory] = useState('All');
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = async () => {
-        try {
-            const response = await axios.get(`${CONFIG.API_URL}/products`);
-            setProducts(response.data.products || []);
-        } catch (err) {
-            console.error('Failed to fetch products:', err);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const [loading, setLoading] = useState(false);
 
     const categories = ['All', ...new Set(products.map(p => p.category))];
 
