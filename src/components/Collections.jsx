@@ -109,7 +109,7 @@ const Collections = () => {
                         gap: 20px;
                         overflow-x: auto;
                         padding-bottom: 10px;
-                        justify-content: flex-start;
+                        justify-content: center;
                     }
                 }
             `}</style>
