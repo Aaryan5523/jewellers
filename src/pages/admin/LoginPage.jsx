@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import CONFIG from '../../config';
 
 const LoginPage = () => {
     const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -16,7 +17,7 @@ const LoginPage = () => {
         setError('');
 
         try {
-            const response = await axios.post('http://localhost:5000/api/admin/login', credentials);
+            const response = await axios.post(`${CONFIG.API_URL}/admin/login`, credentials);
 
             // Store token in localStorage
             localStorage.setItem('adminToken', response.data.token);

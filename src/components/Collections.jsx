@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import axios from 'axios';
+import CONFIG from '../config';
 
 const Collections = () => {
     const [activeCategory, setActiveCategory] = useState('All');
@@ -14,7 +15,7 @@ const Collections = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/products');
+            const response = await axios.get(`${CONFIG.API_URL}/products`);
             setProducts(response.data.products || []);
         } catch (err) {
             console.error('Failed to fetch products:', err);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import axios from 'axios';
+import CONFIG from '../config';
 
 const Shop = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
@@ -15,7 +16,7 @@ const Shop = () => {
     const fetchProducts = async () => {
         try {
             setLoading(true);
-            const response = await axios.get('http://localhost:5000/api/products');
+            const response = await axios.get(`${CONFIG.API_URL}/products`);
             setProducts(response.data.products || []);
         } catch (err) {
             console.error('Failed to fetch products:', err);
