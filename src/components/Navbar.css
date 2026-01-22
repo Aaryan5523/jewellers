@@ -7,15 +7,30 @@
     padding: 30px 0;
     transition: var(--transition);
     background: transparent;
-    color: #fff;
+    color: #ffffff;
 }
 
 .navbar.scrolled {
     padding: 15px 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.99);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     color: var(--charcoal);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .nav-content {
@@ -33,12 +48,23 @@
     font-size: 1.8rem;
     letter-spacing: 4px;
     margin-bottom: -5px;
+    transition: all 0.3s ease;
+    color: #ffffff;
+}
+
+.navbar.scrolled .logo h1 {
+    color: var(--charcoal);
 }
 
 .logo p {
     font-size: 0.6rem;
     letter-spacing: 3px;
     opacity: 0.8;
+    transition: var(--transition);
+}
+
+.logo:hover h1 {
+    letter-spacing: 5px;
 }
 
 .nav-links {
@@ -51,13 +77,52 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 500;
+    position: relative;
+    transition: var(--transition);
+    color: #ffffff;
+}
+
+.navbar.scrolled .nav-links a {
+    color: var(--charcoal);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-gold), var(--secondary-gold));
+    transition: width 0.3s ease;
+}
+
+.navbar.scrolled .nav-links a::after {
+    background: var(--charcoal);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active-link::after {
+    width: 100%;
 }
 
 .nav-links a.active-link,
 .mobile-links a.active-link {
-    color: #3b82f6 !important;
-    /* Premium Blue */
+    color: var(--primary-gold) !important;
     font-weight: 600;
+}
+
+.navbar.scrolled .nav-links a.active-link,
+.navbar.scrolled .mobile-links a.active-link {
+    color: var(--charcoal) !important;
+}
+
+.nav-links a:hover {
+    color: var(--primary-gold);
+}
+
+.navbar.scrolled .nav-links a:hover {
+    color: var(--charcoal);
 }
 
 .icon {
