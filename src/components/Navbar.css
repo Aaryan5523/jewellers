@@ -1,29 +1,48 @@
+/* ==================== NAVBAR GLASSMORPHISM ==================== */
+
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 30px 0;
-    transition: var(--transition);
+    padding: 28px 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     background: transparent;
     color: #ffffff;
 }
 
 .navbar.scrolled {
-    padding: 15px 0;
-    background: rgba(255, 255, 255, 0.99);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    padding: 16px 0;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
     color: var(--charcoal);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    animation: slideDown 0.3s ease-out;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Premium gold accent line */
+.navbar.scrolled::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 600px;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(212, 175, 55, 0.5) 50%,
+            transparent 100%);
+    opacity: 0.8;
 }
 
 @keyframes slideDown {
     from {
-        transform: translateY(-10px);
+        transform: translateY(-12px);
         opacity: 0;
     }
 
@@ -37,68 +56,82 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
+
+/* ==================== LOGO ==================== */
 
 .logo {
     text-align: left;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .logo h1 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     letter-spacing: 4px;
     margin-bottom: -5px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     color: #ffffff;
+    font-weight: 600;
 }
 
 .navbar.scrolled .logo h1 {
     color: var(--charcoal);
+    font-size: 1.7rem;
 }
 
 .logo p {
     font-size: 0.6rem;
     letter-spacing: 3px;
-    opacity: 0.8;
-    transition: var(--transition);
+    opacity: 0.9;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .logo:hover h1 {
-    letter-spacing: 5px;
+    letter-spacing: 5.5px;
+    transform: translateX(2px);
 }
+
+/* ==================== NAVIGATION LINKS ==================== */
 
 .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 45px;
+    align-items: center;
 }
 
 .nav-links a {
     font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 500;
+    letter-spacing: 2.5px;
+    font-weight: 600;
     position: relative;
-    transition: var(--transition);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     color: #ffffff;
+    padding: 8px 0;
 }
 
 .navbar.scrolled .nav-links a {
     color: var(--charcoal);
 }
 
+/* Animated underline effect */
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: 2px;
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--primary-gold), var(--secondary-gold));
-    transition: width 0.3s ease;
+    background: linear-gradient(90deg, #D4AF37, #C5A059);
+    transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 2px;
 }
 
 .navbar.scrolled .nav-links a::after {
-    background: var(--charcoal);
+    background: linear-gradient(90deg, var(--primary-gold), var(--secondary-gold));
 }
 
 .nav-links a:hover::after,
@@ -106,56 +139,38 @@
     width: 100%;
 }
 
+/* Active state */
 .nav-links a.active-link,
 .mobile-links a.active-link {
-    color: var(--primary-gold) !important;
-    font-weight: 600;
+    color: #D4AF37 !important;
+    font-weight: 700;
 }
 
 .navbar.scrolled .nav-links a.active-link,
 .navbar.scrolled .mobile-links a.active-link {
-    color: var(--charcoal) !important;
+    color: var(--primary-gold) !important;
 }
 
 .nav-links a:hover {
-    color: var(--primary-gold);
+    color: #D4AF37;
+    transform: translateY(-2px);
 }
 
 .navbar.scrolled .nav-links a:hover {
-    color: var(--charcoal);
-}
-
-.icon {
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.icon:hover {
     color: var(--primary-gold);
 }
 
-.cart-icon {
-    position: relative;
-}
-
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: var(--primary-gold);
-    color: #fff;
-    font-size: 0.6rem;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+/* ==================== MOBILE MENU ==================== */
 
 .mobile-menu-btn {
     display: none;
     cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.mobile-menu-btn:hover {
+    transform: scale(1.1);
 }
 
 .mobile-nav {
@@ -164,13 +179,29 @@
     left: -100%;
     width: 100%;
     height: 100vh;
-    background: #fff;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 250, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     z-index: 999;
-    transition: var(--transition);
+    transition: left 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--charcoal);
+}
+
+/* Premium overlay pattern */
+.mobile-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(197, 160, 89, 0.08) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .mobile-nav.open {
@@ -178,22 +209,82 @@
 }
 
 .navbar.menu-open {
-    background-color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     color: var(--charcoal) !important;
 }
 
 .mobile-links {
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .mobile-links li {
-    margin: 30px 0;
+    margin: 35px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInMobile 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.mobile-nav.open .mobile-links li:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.mobile-nav.open .mobile-links li:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.mobile-nav.open .mobile-links li:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.mobile-nav.open .mobile-links li:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+@keyframes slideInMobile {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .mobile-links a {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--charcoal);
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
 }
+
+.mobile-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-gold), var(--secondary-gold));
+    transition: width 0.4s ease;
+    border-radius: 2px;
+}
+
+.mobile-links a:hover::after,
+.mobile-links a.active-link::after {
+    width: 80%;
+}
+
+.mobile-links a:hover {
+    color: var(--primary-gold);
+    transform: scale(1.05);
+}
+
+/* ==================== RESPONSIVE ==================== */
 
 @media (max-width: 992px) {
     .desktop-only {
@@ -204,17 +295,38 @@
         display: block;
         position: relative;
         z-index: 1001;
-        /* Ensure button stays on top of menu overlay */
     }
 
     .navbar {
-        padding: 15px 0;
+        padding: 18px 0;
     }
 
-    /* Force dark color for logo and toggle when menu is open on white background */
+    .navbar.scrolled {
+        padding: 14px 0;
+    }
+
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+
+    .navbar.scrolled .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    /* Force dark color for logo and toggle when menu is open */
     .navbar.menu-open .logo h1,
     .navbar.menu-open .logo p,
     .navbar.menu-open .mobile-menu-btn {
         color: var(--charcoal) !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .mobile-links a {
+        font-size: 1.5rem;
+    }
+
+    .mobile-links li {
+        margin: 28px 0;
     }
 }

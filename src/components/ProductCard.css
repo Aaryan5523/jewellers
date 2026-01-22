@@ -1,17 +1,23 @@
+/* ==================== PRODUCT CARD PREMIUM ==================== */
+
 .product-card {
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.06),
+        0 1px 4px rgba(0, 0, 0, 0.04);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     height: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(232, 232, 232, 0.8);
     position: relative;
+    will-change: transform;
 }
 
+/* Premium glassmorphism effect on hover */
 .product-card::before {
     content: '';
     position: absolute;
@@ -19,21 +25,57 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, transparent, rgba(0, 0, 0, 0.02));
+    background: linear-gradient(135deg,
+            transparent 0%,
+            rgba(212, 175, 55, 0.02) 50%,
+            transparent 100%);
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
     z-index: 1;
 }
 
-.product-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-    border-color: rgba(0, 0, 0, 0.15);
+/* Gold border glow on hover */
+.product-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, #D4AF37, #C5A059, #D4AF37);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
 }
+
+.product-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.12),
+        0 8px 24px rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+.product-card:hover::after {
+    opacity: 1;
+}
+
+/* ==================== PRODUCT IMAGE ==================== */
 
 .product-image {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #f5f5f5, #ebebeb);
+    background: linear-gradient(135deg, #fafafa, #f0f0f0);
     margin-bottom: 0;
     aspect-ratio: 4/3;
 }
@@ -48,13 +90,38 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .product-card:hover .product-image img {
-    transform: scale(1.1) rotate(1deg);
+    transform: scale(1.12) rotate(1deg);
 }
 
+/* Shimmer effect overlay */
+.product-image::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(120deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(255, 255, 255, 0.6) 50%,
+            transparent 60%,
+            transparent 100%);
+    transform: translateX(-100%) translateY(-100%) rotate(30deg);
+    transition: transform 0.8s ease;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.product-card:hover .product-image::before {
+    transform: translateX(100%) translateY(100%) rotate(30deg);
+}
+
+/* Radial highlight overlay */
 .product-image::after {
     content: '';
     position: absolute;
@@ -62,13 +129,17 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), transparent);
+    background: radial-gradient(circle at 30% 30%,
+            rgba(255, 255, 255, 0.25),
+            transparent 60%);
     z-index: 2;
     pointer-events: none;
 }
 
+/* ==================== PRODUCT INFO ==================== */
+
 .product-info {
-    padding: 28px;
+    padding: 32px;
     text-align: left;
     flex-grow: 1;
     display: flex;
@@ -81,73 +152,174 @@
 .product-category {
     font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--text-grey);
-    margin-bottom: 5px;
+    letter-spacing: 2.5px;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    font-weight: 700;
 }
 
 .product-info h3 {
-    font-size: 1.15rem;
-    margin-bottom: 10px;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
     font-weight: 700;
     color: var(--charcoal);
-    font-family: var(--font-sans);
-    transition: color 0.3s ease;
+    font-family: var(--font-serif);
+    transition: all 0.3s ease;
+    line-height: 1.3;
 }
 
 .product-card:hover .product-info h3 {
-    color: var(--primary-gold);
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transform: translateX(2px);
 }
 
 .product-description {
-    font-size: 0.85rem;
-    /* Smaller description */
+    font-size: 0.9rem;
     color: #555;
-    margin-bottom: 12px;
-    line-height: 1.4;
+    margin-bottom: 16px;
+    line-height: 1.6;
+    font-weight: 400;
 }
+
+/* ==================== PRODUCT DETAILS ==================== */
 
 .product-details {
     list-style: none;
     padding: 0;
     margin: 0;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .product-details li {
-    font-size: 0.8rem;
-    /* Smaller details text */
+    font-size: 0.85rem;
     color: #4B5563;
-    /* Cool grey */
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     position: relative;
-    padding-left: 16px;
+    padding-left: 20px;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: slideInDetail 0.4s ease forwards;
 }
 
+.product-card:hover .product-details li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.product-details li:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.product-details li:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.product-details li:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.product-details li:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+@keyframes slideInDetail {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Premium bullet points */
 .product-details li::before {
     content: '';
     position: absolute;
     left: 0;
-    width: 6px;
-    height: 6px;
-    background-color: #2563EB;
-    /* Blue dot as per reference image */
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #D4AF37, #C5A059);
     border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
 }
+
+.product-card:hover .product-details li::before {
+    animation: pulseDot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* ==================== PRODUCT PRICE ==================== */
 
 .product-price {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--charcoal);
-    /* Changed to charcoal/dark for standard card look */
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-top: auto;
-    /* Push to bottom if needed */
+    font-family: var(--font-serif);
+    transition: all 0.3s ease;
 }
 
-/* Specific styling for fade-in animation handled in JSX/global CSS, 
-   but ensuring opacity/transform properties don't conflict */
+.product-card:hover .product-price {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transform: scale(1.05);
+}
+
+/* ==================== FADE-IN ANIMATION ==================== */
+
 .product-card.fade-in {
-    /* Animation class handled globally or locally */
+    animation: productFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes productFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+    .product-info {
+        padding: 24px;
+    }
+
+    .product-info h3 {
+        font-size: 1.15rem;
+    }
+
+    .product-description {
+        font-size: 0.875rem;
+    }
+
+    .product-details li {
+        font-size: 0.8rem;
+    }
 }

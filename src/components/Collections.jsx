@@ -1,10 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import { products } from '../data';
+import axios from 'axios';
 
 const Collections = () => {
     const [activeCategory, setActiveCategory] = useState('All');
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    const fetchProducts = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/api/products');
+            setProducts(response.data.products || []);
+        } catch (err) {
+            console.error('Failed to fetch products:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const categories = ['All', ...new Set(products.map(p => p.category))];
 
@@ -13,6 +30,18 @@ const Collections = () => {
             index === self.findIndex(t => t.category === product.category)
         )
         : products.filter(p => p.category === activeCategory)).slice(0, 3);
+
+    if (loading) {
+        return (
+            <section className="section-padding container">
+                <div className="text-center">
+                    <p className="subtitle gold-text">Selection</p>
+                    <h2 className="serif" style={{ fontSize: '3rem' }}>Our Signature Collection</h2>
+                    <p style={{ marginTop: '20px', color: 'var(--text-grey)' }}>Loading...</p>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section id="collections" className="section-padding container">

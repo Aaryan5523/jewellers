@@ -1,0 +1,14 @@
+{
+  "contacts": [
+    {
+      "firstName": "Aaryan",
+      "lastName": "PATEL",
+      "email": "aaryanvidja31@gmail.com",
+      "message": "asfda",
+      "id": 1,
+      "status": "new",
+      "createdAt": "2026-01-22T16:41:29.453Z"
+    }
+  ],
+  "nextId": 2
+}

@@ -1,0 +1,30 @@
+{
+  "products": [
+    {
+      "title": "Custom Name Padel",
+      "price": "100",
+      "category": "Gold",
+      "description": "Not ",
+      "details": [
+        "1 Carrat Gold"
+      ],
+      "image": "/uploads/1769100611858-477732325.jpeg",
+      "id": 1,
+      "createdAt": "2026-01-22T16:50:11.863Z",
+      "updatedAt": "2026-01-22T16:50:31.691Z"
+    },
+    {
+      "title": "Custom Made",
+      "price": "",
+      "category": "Silver",
+      "description": "",
+      "details": [
+        "1 Carrat Gold"
+      ],
+      "image": "/uploads/1769100948560-34489836.jpeg",
+      "id": 2,
+      "createdAt": "2026-01-22T16:55:48.566Z"
+    }
+  ],
+  "nextId": 3
+}

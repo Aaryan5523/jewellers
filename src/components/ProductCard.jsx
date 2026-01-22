@@ -41,8 +41,6 @@ const ProductCard = ({ id, image, title, price, category, description, details, 
             </div>
             <div className="product-info">
                 <h3>{title}</h3>
-                <p className="product-description">{description}</p>
-
                 {details && details.length > 0 && (
                     <ul className="product-details">
                         {details.map((detail, idx) => (
@@ -50,8 +48,6 @@ const ProductCard = ({ id, image, title, price, category, description, details, 
                         ))}
                     </ul>
                 )}
-
-                {/* <p className="product-price">₹{price}</p> */}
             </div>
         </div>
     );
